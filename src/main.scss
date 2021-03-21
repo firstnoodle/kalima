@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+
+@font-face {
+    font-family: 'K24Kurdish';
+    src:
+      url('./assets/fonts/K24KurdishBold-Bold/K24KurdishBold-Bold.ttf') format('truetype'),
+      url('./assets/fonts/K24KurdishBold-Bold/K24KurdishBold-Bold.woff') format('woff'),
+      url('./assets/fonts/K24KurdishBold-Bold/K24KurdishBold-Bold.svg') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: block;
+}
+
+@tailwind utilities;
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+html {
+    height: -webkit-fill-available;
+}
