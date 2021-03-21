@@ -1,8 +1,6 @@
 <template>
-    <div id="app" class="w-screen h-screen flex">
-        <div class="relative w-full h-full">
-            <router-view />
-        </div>
+    <div id="app" class="relative w-screen h-screen flex">
+        <router-view />
 
         <!-- Bottom Nav -->
         <!-- <div
