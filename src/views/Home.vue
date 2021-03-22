@@ -1,15 +1,13 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-  </div>
+    <div class="home">
+        Kalima
+    </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue';
 
 export default Vue.extend({
-  name: "Home",
-  components: {
-  }
+    name: 'Home',
 });
 </script>
