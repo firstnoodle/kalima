@@ -1,27 +1,43 @@
 <template>
     <transition name="slide">
         <div
+            id="cont"
             class="absolute h-screen flex"
-            :class="{ '-left-full': showCharacter }"
+            :class="{
+                '-left-full': showCharacter,
+                'left-0': !showCharacter,
+            }"
         >
-            <div class="h-full w-screen">
-                <div class="w-full grid grid-cols-4 overflow-auto">
-                    <router-link
-                        v-for="character in alphabet"
-                        :key="character.id"
-                        :to="{
-                            name: 'Alphabet',
-                            params: { letterId: character.id },
-                        }"
-                        class="h-20 w-full inline-flex items-center justify-center text-4xl text-gray-800 bg-white rounded border border-white"
-                        :class="{ 'text-red-500': character.vowel }"
-                    >
+            <div class="h-full w-screen overflow-auto">
+                <router-link
+                    v-for="character in alphabet"
+                    :key="character.id"
+                    :to="{
+                        name: 'Alphabet',
+                        params: { letterId: character.id },
+                    }"
+                    class="h-20 w-full grid grid-cols-4 border-b border-gray-100"
+                    :class="{
+                        'text-indigo-500': character.vowel,
+                        'text-gray-600': !character.vowel,
+                    }"
+                >
+                    <div class="flex items-center justify-center text-4xl">
                         {{ character.variants.isolated }}
-                    </router-link>
-                </div>
+                    </div>
+                    <div class="flex items-center justify-center text-xl">
+                        {{ character.name }}
+                    </div>
+                    <div class="flex items-center justify-center text-xl">
+                        {{ character.latinSymbol }}
+                    </div>
+                    <div class="flex items-center justify-center text-xl">
+                        {{ character.ipa }}
+                    </div>
+                </router-link>
             </div>
-            <div v-if="showCharacter" class="h-full w-screen">
-                <character />
+            <div class="h-full w-screen">
+                <character :id="oldCharacter" />
             </div>
         </div>
     </transition>
@@ -38,12 +54,14 @@ export default Vue.extend({
     data() {
         return {
             alphabet,
+            oldCharacter: 1,
             showCharacter: this.$route.params.letterId,
         };
     },
     watch: {
-        $route(to) {
+        $route(to, from) {
             this.showCharacter = to.params.letterId !== undefined;
+            this.oldCharacter = to.params.letterId | from.params.letterId;
         },
     },
     created() {
@@ -53,6 +71,9 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+#cont {
+    transition: all 0.5s;
+}
 .slide-enter-active,
 .slide-leave-active {
     left: 0;
