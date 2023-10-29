@@ -98,12 +98,12 @@ export default Vue.extend({
         id: {
             type: Number,
             required: true,
-        }
+        },
     },
     computed: {
         character() {
             return alphabet.find(char => char.id === this.id);
-        }
-    }
+        },
+    },
 });
 </script>
